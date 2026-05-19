@@ -1,6 +1,6 @@
 {
   "case_id": "case_001_churn_pressure",
-  "root_cause": "Low product fit increases frustration, which lowers usage and increases support tickets.",
+  "root_cause": "Low product fit increases hidden customer frustration. Higher frustration lowers observed usage and increases support ticket probability.",
   "causal_chain": [
     "low_product_fit",
     "increased_frustration",

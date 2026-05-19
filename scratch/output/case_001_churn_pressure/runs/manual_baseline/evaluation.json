@@ -1,7 +1,7 @@
 {
   "case_id": "case_001_churn_pressure",
   "reasoner_name": "manual_baseline",
-  "matched_expected_claims": 0,
+  "matched_expected_claims": 1,
   "total_expected_claims": 3,
-  "score": 0.0
+  "score": 0.3333333333333333
 }

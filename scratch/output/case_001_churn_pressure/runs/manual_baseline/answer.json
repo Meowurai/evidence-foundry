@@ -1,0 +1,16 @@
+{
+  "case_id": "case_001_churn_pressure",
+  "reasoner_name": "manual_baseline",
+  "beliefs": [
+    {
+      "claim": {
+        "text": "Customer frustration lowers product usage.",
+        "supporting_evidence": [
+          "Observed customer usage scores vary after the simulation.",
+          "Support tickets appear for some customers."
+        ]
+      },
+      "confidence": 0.75
+    }
+  ]
+}
