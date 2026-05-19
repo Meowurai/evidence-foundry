@@ -1,0 +1,7 @@
+[project]
+name = "evidence-foundry"
+version = "0.1.0"
+description = "A lab for building trustworthy reasoning systems from observable evidence and hidden ground truth."
+
+[project.scripts]
+foundry = "foundry.cli:main"
