@@ -1,0 +1,33 @@
+{
+  "case_id": "case_001_churn_pressure",
+  "reasoner_name": "naive_churn",
+  "beliefs": [
+    {
+      "claim": {
+        "text": "Customer frustration lowers product usage.",
+        "supporting_evidence": [
+          "4 customers have usage_score below 0.4."
+        ]
+      },
+      "confidence": 0.55
+    },
+    {
+      "claim": {
+        "text": "Customer frustration increases support ticket probability.",
+        "supporting_evidence": [
+          "2 support tickets were observed."
+        ]
+      },
+      "confidence": 0.55
+    },
+    {
+      "claim": {
+        "text": "Low product fit increases customer frustration.",
+        "supporting_evidence": [
+          "Low usage and support tickets appear together in the observed evidence."
+        ]
+      },
+      "confidence": 0.35
+    }
+  ]
+}
