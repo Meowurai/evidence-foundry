@@ -13,15 +13,6 @@
     },
     {
       "claim": {
-        "text": "Customer frustration increases support ticket probability.",
-        "supporting_evidence": [
-          "2 support tickets were observed."
-        ]
-      },
-      "confidence": 0.55
-    },
-    {
-      "claim": {
         "text": "Low product fit increases customer frustration.",
         "supporting_evidence": [
           "Low usage and support tickets appear together in the observed evidence."

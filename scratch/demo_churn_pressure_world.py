@@ -31,6 +31,7 @@ from foundry.worlds.churn_pressure import (
 from foundry.reasoners.naive_churn import run_naive_churn_reasoner
 
 from foundry.evidence.events import export_events
+from foundry.evidence.data_dictionary import write_data_dictionary
 
 
 OUTPUT_DIR = Path("scratch/output/case_001_churn_pressure")
@@ -44,6 +45,11 @@ def main() -> None:
     # 2. Build the observed ontology.
     # This filters out hidden variables so only observable fields remain.
     observed_world = build_observed_ontology(world)
+
+    write_data_dictionary(
+        observed_world=observed_world,
+        output_path=OUTPUT_DIR / "observed" / "data_dictionary.md",
+)
 
     # 3. Create runtime context.
     # The clock controls simulation time.

@@ -67,7 +67,7 @@ def run_naive_churn_reasoner(
             )
         )
 
-    events = read_csv(observed_dir / "events.csv")
+    events =  []# read_csv(observed_dir / "events.csv")
 
     support_ticket_events = [
         event
