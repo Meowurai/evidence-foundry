@@ -8,8 +8,7 @@ from foundry.evidence.export import (
 )
 from foundry.ontology.entity import EntityDef
 from foundry.ontology.variable import VariableDef, Visbility
-
-
+from foundry.simulation.state import State
 
 @dataclass
 class Customer:
@@ -34,7 +33,15 @@ customers = [
     Customer("customer_2", 0.30, 0.8, 0.20, True),
 ]
 
-observed_records = export_observed_records(customers, observed_customer_def)
+state = State()
+
+for customer in customers:
+    state.add_record("Customer", customer)
+
+customer_records = state.get_records("Customer")
+
+
+observed_records = export_observed_records(customer_records, observed_customer_def)
 
 write_records_to_csv(
     observed_records,
