@@ -28,6 +28,10 @@ from foundry.worlds.churn_pressure import (
     build_world_ontology,
 )
 
+from foundry.reasoners.naive_churn import run_naive_churn_reasoner
+
+from foundry.evidence.events import export_events
+
 
 OUTPUT_DIR = Path("scratch/output/case_001_churn_pressure")
 
@@ -86,6 +90,15 @@ def main() -> None:
             output_path=OUTPUT_DIR / "observed" / f"{entity_name}.csv",
         )
 
+
+    event_records = export_events(state.event_log)
+
+    if event_records:
+        write_records_to_csv(
+            records=event_records,
+            output_path=OUTPUT_DIR / "observed" / "events.csv"
+        )
+
     # 7. Export hidden ground truth.
     # The reasoner should not see this during investigation.
     ground_truth = build_ground_truth()
@@ -111,15 +124,14 @@ def main() -> None:
         confidence=0.75,
     )
 
-    reasoner_output = ReasonerOutput(
-        case_id="case_001_churn_pressure",
-        reasoner_name="manual_baseline",
-        beliefs=[belief],
-    )
+    reasoner_output = run_naive_churn_reasoner(
+    case_id="case_001_churn_pressure",
+    observed_dir=OUTPUT_DIR / "observed",
+)
 
     write_reasoner_output(
         output=reasoner_output,
-        output_path=OUTPUT_DIR / "runs" / "manual_baseline" / "answer.json",
+        output_path=OUTPUT_DIR / "runs" / "naive_churn" / "answer.json",
     )
 
     # 9. Evaluate reasoner output against ground truth.
@@ -130,7 +142,7 @@ def main() -> None:
 
     write_evaluation_result(
         result=evaluation,
-        output_path=OUTPUT_DIR / "runs" / "manual_baseline" / "evaluation.json",
+        output_path=OUTPUT_DIR / "runs" / "naive_churn" / "evaluation.json",
     )
 
     # 10. Print a tiny summary so you know it worked.

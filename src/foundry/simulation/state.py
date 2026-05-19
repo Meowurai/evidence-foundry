@@ -4,6 +4,8 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any
 
+from foundry.simulation.event import Event
+
 
 
 @dataclass
@@ -17,6 +19,10 @@ class State:
 
     entity_data: dict[str, list[Any]] = field(
         default_factory=lambda: defaultdict(list)
+    )
+
+    event_log: list[Event] = field(
+        default_factory=list
     )
 
     def add_record(self, entity_name: str, record: Any) -> None:
@@ -33,3 +39,6 @@ class State:
         Return all records for one entity type.
         """
         return self.entity_data[entity_name]
+    
+    def add_event(self, event: Event) -> None:
+        self.event_log.append(event)
