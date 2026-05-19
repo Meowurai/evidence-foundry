@@ -1,8 +1,11 @@
 
-
+from pathlib import Path
 from dataclasses import dataclass
 
-from foundry.evidence.export import export_observed_records
+from foundry.evidence.export import (
+    export_observed_records,
+    write_records_to_csv
+)
 from foundry.ontology.entity import EntityDef
 from foundry.ontology.variable import VariableDef, Visbility
 
@@ -31,4 +34,9 @@ customers = [
     Customer("customer_2", 0.30, 0.8, 0.20, True),
 ]
 
-print(export_observed_records(customers, observed_customer_def))
+observed_records = export_observed_records(customers, observed_customer_def)
+
+write_records_to_csv(
+    observed_records,
+    Path("scratch/output/customers.csv")
+)

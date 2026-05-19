@@ -1,5 +1,6 @@
 
-
+import csv
+from pathlib import Path
 from dataclasses import asdict
 from typing import Any
 
@@ -53,3 +54,30 @@ def export_observed_records(records: list[Any], entity_def: EntityDef) -> list[d
         export_observed_record(record, entity_def)
         for record in records
     ]
+
+
+
+def write_records_to_csv(
+    records: list[dict[str, Any]],
+    output_path: Path,
+) -> None:
+    """
+    Write observed records to a CSV file.
+
+    These records should already be filtered by the observed ontology.
+    This function only handles writing them to disk.
+    """
+
+    if not records:
+        raise ValueError("Cannot write CSV because records list is empty.")
+    
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Use the keys from the first record as CSV columns.
+    fieldnames = list(records[0].keys())
+
+    with output_path.open("w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+        writer.writeheader()
+        writer.writerows(records)
