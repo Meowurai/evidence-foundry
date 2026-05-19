@@ -1,0 +1,3 @@
+id,customer_id,created_tick,severity,category
+ticket_7_customer_5,customer_5,7,medium,product_issue
+ticket_8_customer_2,customer_2,8,medium,product_issue

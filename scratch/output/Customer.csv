@@ -1,0 +1,6 @@
+id,usage_score,churned
+customer_1,0.3535586960546404,False
+customer_2,0.0,False
+customer_3,0.00933645970912661,False
+customer_4,0.0,False
+customer_5,0.4975493390999397,False
