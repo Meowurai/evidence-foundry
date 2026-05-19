@@ -42,3 +42,14 @@ def export_observed_record(record: Any, entity_def: EntityDef) -> dict[str, Any]
     }
 
     return observed_data
+
+
+def export_observed_records(records: list[Any], entity_def: EntityDef) -> list[dict[str, Any]]:
+    """
+    Export many runtime records using the same observed entity definition.
+    """
+
+    return [
+        export_observed_record(record, entity_def)
+        for record in records
+    ]
