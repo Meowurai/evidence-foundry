@@ -30,6 +30,8 @@ from foundry.worlds.churn_pressure import (
 
 from foundry.reasoners.naive_churn import run_naive_churn_reasoner
 
+from foundry.evidence.events import export_events
+
 
 OUTPUT_DIR = Path("scratch/output/case_001_churn_pressure")
 
@@ -86,6 +88,15 @@ def main() -> None:
         write_records_to_csv(
             records=observed_records,
             output_path=OUTPUT_DIR / "observed" / f"{entity_name}.csv",
+        )
+
+
+    event_records = export_events(state.event_log)
+
+    if event_records:
+        write_records_to_csv(
+            records=event_records,
+            output_path=OUTPUT_DIR / "observed" / "events.csv"
         )
 
     # 7. Export hidden ground truth.
