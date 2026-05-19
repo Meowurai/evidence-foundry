@@ -67,16 +67,24 @@ def run_naive_churn_reasoner(
             )
         )
 
-    if has_support_tickets:
+    events = read_csv(observed_dir / "events.csv")
+
+    support_ticket_events = [
+        event
+        for event in events
+        if event["event_type"] == "SupportTicketCreated"
+    ]
+
+    if support_ticket_events:
         beliefs.append(
             Belief(
                 claim=Claim(
                     text="Customer frustration increases support ticket probability.",
                     supporting_evidence=[
-                        f"{len(support_tickets)} support tickets were observed."
+                        f"{len(support_ticket_events)} SupportTicketCreated events were observed over time."
                     ],
                 ),
-                confidence=0.55,
+                confidence=0.65,
             )
         )
 
