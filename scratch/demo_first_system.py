@@ -6,6 +6,7 @@ from foundry.simulation.clock import Clock
 from foundry.simulation.context import Context
 from foundry.simulation.state import State
 from foundry.simulation.system import System
+from foundry.simulation.engine import Engine
 
 
 @dataclass
@@ -51,8 +52,13 @@ context = Context(
 
 state = State()
 
-system = CustomerCreationSystem()
 
-system.step(context, state, tick=0)
+engine = Engine(
+    systems=[
+        CustomerCreationSystem(),
+    ]
+)
+
+engine.run(context, state)
 
 print(state.get_records("Customer"))
